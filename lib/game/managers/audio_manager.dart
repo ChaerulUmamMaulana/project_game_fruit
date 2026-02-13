@@ -111,4 +111,11 @@ class AudioManager {
   void toggleSfx() {
 _isSfxEnabled = !_isSfxEnabled;
 }
+
+void enableMusic() {
+if (!_isMusicEnabled) {
+_isMusicEnabled = true;
+resumeBackroundMusic();
+}
+}
 }
