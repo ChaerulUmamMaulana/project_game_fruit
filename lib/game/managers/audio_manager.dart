@@ -129,4 +129,8 @@ pauseBackgroundMusic();
 void enableSfx() {
 _isSfxEnabled = true;
 }
+
+void disableSfx() {
+_isSfxEnabled = false;
+}
 }
