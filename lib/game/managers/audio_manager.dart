@@ -44,4 +44,12 @@ class AudioManager {
     }
   }
 
+  void pauseBackgroundMusic() {
+    try {
+      FlameAudio.bgm.pause();
+    } catch (e) {
+      print('Error pausing backround music: $e');
+    }
+  }
+
 }
