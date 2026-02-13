@@ -118,4 +118,11 @@ _isMusicEnabled = true;
 resumeBackroundMusic();
 }
 }
+
+void disableMusic() {
+if (_isMusicEnabled) {
+_isMusicEnabled = false;
+pauseBackgroundMusic();
+}
+}
 }
