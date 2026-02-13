@@ -24,7 +24,7 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   final ValueNotifier<int> counter = ValueNotifier(1);
-
+  late FruitCatcherGame game;
   @override
   void initState() {
     super.initState();
@@ -68,7 +68,7 @@ class _GameScreenState extends State<GameScreen> {
             child: Row(
               children: [
                 IconButton(
-                  icon: const Icon(Icons.music_note, color: Colors.grey),
+                  icon: const Icon(Icons.music_note, color: Colors.black),
                   onPressed: () {},
                 ),
       
