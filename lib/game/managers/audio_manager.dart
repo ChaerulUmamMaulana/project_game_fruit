@@ -16,13 +16,13 @@ class AudioManager {
   double get sfxVolume => _sfxVolume;
 
   Future<void> initialize() async {
-    try{
+    try {
       await FlameAudio.audioCache.loadAll([
         'assets/audio/music/baground_music.mp3',
         'assets/audio/sfx/sfx_collect.mp3',
       ]);
       print('Audio initialized succesfully');
-    } catch(e) {
+    } catch (e) {
       print('Error initializing audio:  $e');
     }
   }
@@ -30,12 +30,16 @@ class AudioManager {
   void playBackgroundMusic() {
     if (_isMusicEnabled) {
       try {
-        FlameAudio.bgm.play('assets/audio/music/baground_music.mp3', volume: _musicVolume);
+        FlameAudio.bgm.play(
+          'assets/audio/music/baground_music.mp3',
+          volume: _musicVolume,
+        );
       } catch (e) {
         print('Error playing backround music: $e');
       }
     }
   }
+
   void stopBackroundMusic() {
     try {
       FlameAudio.bgm.stop();
@@ -83,25 +87,28 @@ class AudioManager {
   }
 
   void setMusicVolume(double volume) {
-_musicVolume = volume.clamp(0.0, 1.0);
-try {
-FlameAudio.bgm.audioPlayer.setVolume(_musicVolume);
-} catch (e) {
-print('Error setting music volume: $e');
-}
-}
+    _musicVolume = volume.clamp(0.0, 1.0);
+    try {
+      FlameAudio.bgm.audioPlayer.setVolume(_musicVolume);
+    } catch (e) {
+      print('Error setting music volume: $e');
+    }
+  }
 
-void setSfxVolume(double volume) {
-_sfxVolume = volume.clamp(0.0, 1.0);
-}
+  void setSfxVolume(double volume) {
+    _sfxVolume = volume.clamp(0.0, 1.0);
+  }
 
-void toggleMusic() {
-_isMusicEnabled = !_isMusicEnabled;
-if (_isMusicEnabled) {
-resumeBackroundMusic();
-} else {
-pauseBackgroundMusic();
-}
-}
+  void toggleMusic() {
+    _isMusicEnabled = !_isMusicEnabled;
+    if (_isMusicEnabled) {
+      resumeBackroundMusic();
+    } else {
+      pauseBackgroundMusic();
+    }
+  }
 
+  void toggleSfx() {
+_isSfxEnabled = !_isSfxEnabled;
+}
 }
