@@ -109,28 +109,36 @@ class AudioManager {
   }
 
   void toggleSfx() {
-_isSfxEnabled = !_isSfxEnabled;
-}
+    _isSfxEnabled = !_isSfxEnabled;
+  }
 
-void enableMusic() {
-if (!_isMusicEnabled) {
-_isMusicEnabled = true;
-resumeBackroundMusic();
-}
-}
+  void enableMusic() {
+    if (!_isMusicEnabled) {
+      _isMusicEnabled = true;
+      resumeBackroundMusic();
+    }
+  }
 
-void disableMusic() {
-if (_isMusicEnabled) {
-_isMusicEnabled = false;
-pauseBackgroundMusic();
-}
-}
+  void disableMusic() {
+    if (_isMusicEnabled) {
+      _isMusicEnabled = false;
+      pauseBackgroundMusic();
+    }
+  }
 
-void enableSfx() {
-_isSfxEnabled = true;
-}
+  void enableSfx() {
+    _isSfxEnabled = true;
+  }
 
-void disableSfx() {
-_isSfxEnabled = false;
-}
+  void disableSfx() {
+    _isSfxEnabled = false;
+  }
+
+  void dispose() {
+    try {
+      FlameAudio.bgm.dispose();
+    } catch (e) {
+      print('Error disposing audio: $e');
+    }
+  }
 }
