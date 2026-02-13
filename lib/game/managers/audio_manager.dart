@@ -1,3 +1,5 @@
+import 'package:flame_audio/flame_audio.dart';
+
 class AudioManager {
   static final AudioManager _instance = AudioManager._internal();
   factory AudioManager() => _instance;
@@ -12,4 +14,34 @@ class AudioManager {
   bool get isSfxEnabled => _isSfxEnabled;
   double get musicVolume => _musicVolume;
   double get sfxVolume => _sfxVolume;
+
+  Future<void> initialize() async {
+    try{
+      await FlameAudio.audioCache.loadAll([
+        'assets/audio/music/baground_music.mp3',
+        'assets/audio/sfx/sfx_collect.mp3',
+      ]);
+      print('Audio initialized succesfully');
+    } catch(e) {
+      print('Error initializing audio:  $e');
+    }
+  }
+
+  void playBackgroundMusic() {
+    if (_isMusicEnabled) {
+      try {
+        FlameAudio.bgm.play('assets/audio/music/baground_music.mp3', volume: _musicVolume);
+      } catch (e) {
+        print('Error playing backround music: $e');
+      }
+    }
+  }
+  void stopBackroundMusic() {
+    try {
+      FlameAudio.bgm.stop();
+    } catch (e) {
+      print('Error stopping backround music: $e');
+    }
+  }
+
 }
