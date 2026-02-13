@@ -52,4 +52,14 @@ class AudioManager {
     }
   }
 
+  void resumeBackroundMusic() {
+    if (_isMusicEnabled) {
+      try {
+        FlameAudio.bgm.resume();
+      } catch (e) {
+        print('Error resuming backround music: $e');
+      }
+    }
+  }
+
 }
