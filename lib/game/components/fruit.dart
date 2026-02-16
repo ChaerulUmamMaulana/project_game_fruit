@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
@@ -40,6 +41,19 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
         if (other is Basket) {
           gameRef.incrementScore();
           removeFromParent();
+        }
+      }
+
+      @override
+      void render(Canvas canvas) {
+        super.render(canvas);
+
+        final paint = Paint()..style = PaintingStyle.fill;
+
+        Switch (type) {
+          case FruitType.manggo:
+          paint.color = Colors.yellow;
+          break;
         }
       }
 }
