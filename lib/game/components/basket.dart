@@ -2,7 +2,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
 
-class basket extends PositionComponent with HasGameRef, CollisionCallbacks {
+class Basket extends PositionComponent with HasGameRef, CollisionCallbacks {
   Basket() : super(size: Vector2(80, 60));
 
   @override
@@ -28,6 +28,11 @@ class basket extends PositionComponent with HasGameRef, CollisionCallbacks {
     const Radius.circular(10),);
 
     canvas.drawRRect(rect, paint);
+
+    final handlePaint = Paint()
+    ..color = Colors.brown[801] !
+    ..style = PaintingStyle.stroke
+    ..strokeWidth = 3;
 
     final handlePath = Path()
     ..moveTo(10, 0)
