@@ -1,6 +1,7 @@
 import 'dart:math';
 import 'dart:ui';
 
+import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
@@ -27,6 +28,8 @@ class FruitCatcherGame extends FlameGame with PanDetector, HasCollisionDetection
   @override
   Future<void> onLoad() async {
     await super.onLoad();
+
+    camera.viewport = FixedResolutionViewport(resolution: Vector2(400, 800));
     AudioManager().playBackgroundMusic();
   }
 }
