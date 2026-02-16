@@ -20,4 +20,15 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
         anchor = Anchor.center;
         add(CircleHitbox());
       }
+
+      @override
+      void update(double dt) {
+        super.update(dt);
+
+        position.y += fallSpeed * dt;
+
+        if (position.y > gameRef.size.y + 50) {
+          removeFromParent();
+        }
+      }
 }
