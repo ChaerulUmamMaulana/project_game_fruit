@@ -70,4 +70,10 @@ class FruitCatcherGame extends FlameGame with PanDetector, HasCollisionDetection
     AudioManager().playSfx('game_over.mp3');
     pauseEngine();
   }
+
+  @override
+  void onRemove() {
+    AudioManager().stopBackroundMusic();
+    super.onRemove();
+  }
 }
