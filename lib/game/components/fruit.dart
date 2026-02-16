@@ -5,7 +5,7 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:project_game_fruit/game/components/basket.dart';
 
-enum FruitType { manggo, banana, coconut, orange }
+enum FruitType { apple, banana, orange, strawberry }
 
 class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, CollisionCallbacks {
   final FruitType type;
@@ -51,7 +51,10 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
         final paint = Paint()..style = PaintingStyle.fill;
 
         Switch (type) {
-          case FruitType.manggo:
+          case FruitType.apple:
+          paint.color = Colors.red;
+          break;
+          case FruitType.banana;
           paint.color = Colors.yellow;
           break;
         }
