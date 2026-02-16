@@ -13,4 +13,11 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
   Fruit({super.position})
     : type = FruitType.values[Random().nextInt(FruitType.values.length)],
       super(size: Vector2.all(40));
+
+      @override
+      Future<void> onLoad() async {
+        await super.onLoad();
+        anchor = Anchor.center;
+        add(CircleHitbox());
+      }
 }
