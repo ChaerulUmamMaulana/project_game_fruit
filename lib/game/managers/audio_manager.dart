@@ -18,8 +18,8 @@ class AudioManager {
   Future<void> initialize() async {
     try {
       await FlameAudio.audioCache.loadAll([
-        'assets/audio/music/baground_music.mp3',
-        'assets/audio/sfx/sfx_collect.mp3',
+        'music/baground_music.mp3',
+        'sfx/sfx_collect.mp3',
       ]);
       print('Audio initialized succesfully');
     } catch (e) {
@@ -31,7 +31,7 @@ class AudioManager {
     if (_isMusicEnabled) {
       try {
         FlameAudio.bgm.play(
-          'assets/audio/music/baground_music.mp3',
+          'music/baground_music.mp3',
           volume: _musicVolume,
         );
       } catch (e) {
