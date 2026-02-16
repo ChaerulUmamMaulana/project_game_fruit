@@ -33,7 +33,18 @@ class FruitCatcherGame extends FlameGame with PanDetector, HasCollisionDetection
 
     basket = Basket();
     await add(basket);
-    
+
     AudioManager().playBackgroundMusic();
+  }
+
+  @override
+  void update(double dt) {
+    super.update(dt);
+
+    fruitSpawnTimer += dt;
+    if (fruitSpawnTimer >= fruitSpawnInterval) {
+      spawnFruit();
+      fruitSpawnTimer = 0;
+    }
   }
 }
