@@ -76,4 +76,7 @@ class FruitCatcherGame extends FlameGame with PanDetector, HasCollisionDetection
     AudioManager().stopBackroundMusic();
     super.onRemove();
   }
+
+  @override
+  Color backgroundColor() => const Color(0xFF87CEEB);
 }
