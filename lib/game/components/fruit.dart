@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:project_game_fruit/game/components/basket.dart';
 
 enum FruitType { manggo, banana, coconut, orange }
 
@@ -28,6 +29,16 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
         position.y += fallSpeed * dt;
 
         if (position.y > gameRef.size.y + 50) {
+          removeFromParent();
+        }
+      }
+
+      @override
+      void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
+        super.onCollision(intersectionPoints, other);
+
+        if (other is Basket) {
+          gameRef.incrementScore();
           removeFromParent();
         }
       }
