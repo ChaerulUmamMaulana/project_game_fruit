@@ -52,11 +52,17 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
 
         Switch (type) {
           case FruitType.apple:
-          paint.color = Colors.red;
-          break;
+            paint.color = Colors.red;
+            break;
           case FruitType.banana;
-          paint.color = Colors.yellow;
-          break;
+            paint.color = Colors.yellow;
+            break;
+           case FruitType.orange;
+            paint.color = Colors.orange
+            break;
+           case FruitType.strawberry;
+            paint.color = Colors.pink;
+            break;
         }
       }
 }
