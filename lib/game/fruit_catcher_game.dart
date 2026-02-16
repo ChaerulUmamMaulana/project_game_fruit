@@ -8,12 +8,14 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
 import 'package:project_game_fruit/game/components/basket.dart';
+import 'package:project_game_fruit/game/components/fruit.dart';
 import 'package:project_game_fruit/game/managers/audio_manager.dart';
 
 class FruitCatcherGame extends FlameGame with PanDetector, HasCollisionDetection {
     late Basket basket;
     late TextComponent scoreText;
     final Random random = Random();
+    double fruitSpawnTimer = 0;
     double fruitSpawnInterval = 1.5;
 
   final ValueNotifier<int> scoreNotifier = ValueNotifier<int>(0);
