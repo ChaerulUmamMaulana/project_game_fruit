@@ -64,5 +64,7 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
             paint.color = Colors.pink;
             break;
         }
+
+        canvas.drawCircle(Offset(size.x / 2, size.y / 2), size.x / 2, paint);
       }
 }
