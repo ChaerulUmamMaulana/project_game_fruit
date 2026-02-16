@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flutter/material.dart';
 import 'package:project_game_fruit/game/components/basket.dart';
 
 enum FruitType { apple, banana, orange, strawberry }
@@ -50,17 +51,17 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
 
         final paint = Paint()..style = PaintingStyle.fill;
 
-        Switch (type) {
+        switch (type) { 
           case FruitType.apple:
             paint.color = Colors.red;
             break;
-          case FruitType.banana;
+          case FruitType.banana:
             paint.color = Colors.yellow;
             break;
-           case FruitType.orange;
-            paint.color = Colors.orange
+           case FruitType.orange:
+            paint.color = Colors.orange;
             break;
-           case FruitType.strawberry;
+           case FruitType.strawberry:
             paint.color = Colors.pink;
             break;
         }
@@ -68,7 +69,7 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
         canvas.drawCircle(Offset(size.x / 2, size.y / 2), size.x / 2, paint);
 
         final shinePaint = Paint()
-        ..color = Colors.white.withOpacity(0,3)
+        ..color = Colors.white.withOpacity(0.3)
         ..style = PaintingStyle.fill;
 
         canvas.drawCircle(Offset(size.x / 2 - 5, size.y / 2 - 5),size.x / 5, shinePaint);
