@@ -3,6 +3,7 @@ import 'dart:ui';
 
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
+import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flutter/material.dart';
@@ -52,5 +53,11 @@ class FruitCatcherGame extends FlameGame with PanDetector, HasCollisionDetection
     final x = random.nextDouble() * size.x;
     final fruit = Fruit(position: Vector2(x, -50));
     add(fruit);
+  }
+
+  @override
+  void onPanUpdate(DragUpdateInfo info) {
+    basket.position.x += info.delta.global.x;
+    basket.position.x = basket.position.x.clamp(basket.size.x / 2, size.x - basket.size.x / 2);
   }
 }
