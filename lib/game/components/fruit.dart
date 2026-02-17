@@ -1,5 +1,5 @@
 import 'dart:math';
-import 'dart:ui';
+
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
@@ -9,7 +9,7 @@ import 'package:project_game_fruit/game/fruit_catcher_game.dart';
 
 enum FruitType { apple, banana, orange, strawberry }
 
-class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, CollisionCallbacks {
+class Fruit extends PositionComponent with HasGameReference<FruitCatcherGame>, CollisionCallbacks {
   final FruitType type;
   final double fallSpeed = 200;
   final Random random = Random();
@@ -17,8 +17,9 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
   Fruit({super.position})
     : type = FruitType.values[Random().nextInt(FruitType.values.length)],
       super(size: Vector2.all(40));
+      
 
-      @override
+      @override 
       Future<void> onLoad() async {
         await super.onLoad();
         anchor = Anchor.center;
@@ -31,7 +32,7 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
 
         position.y += fallSpeed * dt;
 
-        if (position.y > gameRef.size.y + 50) {
+        if (position.y > game.size.y + 50) {
           removeFromParent();
         }
       }
@@ -41,7 +42,7 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
         super.onCollision(intersectionPoints, other);
 
         if (other is Basket) {
-          gameRef.incrementScore();
+          game.incrementScore();
           removeFromParent();
         }
       }
@@ -70,7 +71,7 @@ class Fruit extends PositionComponent with HasGameRef<FruitCatcherGame>, Collisi
         canvas.drawCircle(Offset(size.x / 2, size.y / 2), size.x / 2, paint);
 
         final shinePaint = Paint()
-        ..color = Colors.white.withOpacity(0.3)
+        ..color = Colors.white.withOpacity(1.0)
         ..style = PaintingStyle.fill;
 
         canvas.drawCircle(Offset(size.x / 2 - 5, size.y / 2 - 5),size.x / 5, shinePaint);

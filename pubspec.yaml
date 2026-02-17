@@ -64,6 +64,7 @@ flutter:
   assets:
     - assets/audio/music/baground_music.mp3
     - assets/audio/sfx/sfx_collect.mp3
+    - assets/audio/sfx/game_over.mp3
 
   # To add assets to your application, add an assets section, like this:
   # assets:

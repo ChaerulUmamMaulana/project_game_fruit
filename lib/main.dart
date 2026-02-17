@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:project_game_fruit/game/fruit_catcher_game.dart';
 import 'package:project_game_fruit/game/managers/audio_manager.dart';
 
-void main() {
-  runApp(MyApp());
+void main() async {
+  // 1. Inisialisasi wajib di sini agar audio jalan
+  WidgetsFlutterBinding.ensureInitialized();
+  await AudioManager().initialize(); 
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +15,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(title: 'Fruit Catcher Game', home: const GameScreen());
+    return MaterialApp(
+      debugShowCheckedModeBanner: false, 
+      title: 'Fruit Catcher Game', 
+      home: const GameScreen()
+    );
   }
 }
 
@@ -24,25 +31,15 @@ class GameScreen extends StatefulWidget {
 }
 
 class _GameScreenState extends State<GameScreen> {
-  final ValueNotifier<int> counter = ValueNotifier(1);
+  
   late FruitCatcherGame game;
+
   @override
   void initState() {
     super.initState();
     game = FruitCatcherGame();
   }
 
-  void main() async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await AudioManager().initialize();
-    runApp(MyApp());
-  }
-
-  @override
-  void dispose() {
-    game.onRemove();
-    super.dispose();
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +56,7 @@ class _GameScreenState extends State<GameScreen> {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: ValueListenableBuilder<int>(
-                valueListenable: counter,
+                valueListenable: game.scoreNotifier, 
                 builder: (context, score, child) {
                   return Text(
                     'Score: $score',
@@ -71,9 +68,9 @@ class _GameScreenState extends State<GameScreen> {
                   );
                 },
               ),
-            ), //Container
+            ),
           ),
-      
+    
           Positioned(
             top: 50,
             right: 20,
@@ -81,12 +78,11 @@ class _GameScreenState extends State<GameScreen> {
               children: [
                 IconButton(
                   icon: const Icon(Icons.music_note, color: Colors.black),
-                  onPressed: () {AudioManager().toggleMusic();},
+                  onPressed: () => AudioManager().toggleMusic(),
                 ),
-      
                 IconButton(
                   icon: const Icon(Icons.volume_up, color: Colors.black),
-                  onPressed: () {AudioManager().toggleSfx();},
+                  onPressed: () => AudioManager().toggleSfx(),
                 ),
               ],
             ),

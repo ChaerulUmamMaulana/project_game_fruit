@@ -1,6 +1,5 @@
 import 'dart:math';
 import 'dart:ui';
-
 import 'package:flame/camera.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -13,7 +12,6 @@ import 'package:project_game_fruit/game/managers/audio_manager.dart';
 
 class FruitCatcherGame extends FlameGame with PanDetector, HasCollisionDetection {
     late Basket basket;
-    late TextComponent scoreText;
     final Random random = Random();
     double fruitSpawnTimer = 0;
     double fruitSpawnInterval = 1.5;
@@ -34,8 +32,9 @@ class FruitCatcherGame extends FlameGame with PanDetector, HasCollisionDetection
 
     camera.viewport = FixedResolutionViewport(resolution: Vector2(400, 800));
 
-    basket = Basket();
-    await add(basket);
+  
+     basket = Basket();
+      await add(basket);
 
     AudioManager().playBackgroundMusic();
   }
@@ -52,7 +51,7 @@ class FruitCatcherGame extends FlameGame with PanDetector, HasCollisionDetection
   }
 
   void spawnFruit() {
-    final x = random.nextDouble() * size.x;
+    final x = random.nextDouble() * size.x ;
     final fruit = Fruit(position: Vector2(x, -50));
     add(fruit);
   }

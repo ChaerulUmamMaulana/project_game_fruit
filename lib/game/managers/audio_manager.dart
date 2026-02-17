@@ -20,6 +20,7 @@ class AudioManager {
       await FlameAudio.audioCache.loadAll([
         'music/baground_music.mp3',
         'sfx/sfx_collect.mp3',
+        'sfx/game_over.mp3', 
       ]);
       print('Audio initialized succesfully');
     } catch (e) {
@@ -69,7 +70,7 @@ class AudioManager {
   void playSfx(String fileName) {
     if (_isSfxEnabled) {
       try {
-        FlameAudio.play('assets/audio/sfx/sfx_collect.mp3', volume: _sfxVolume);
+        FlameAudio.play('sfx/sfx_collect.mp3', volume: _sfxVolume);
       } catch (e) {
         print('Error playing sfx: $e');
       }
